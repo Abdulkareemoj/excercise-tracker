@@ -12,8 +12,12 @@ import config from "./fresh.config.ts";
 import { Application, Router } from "https://deno.land/x/oak/mod.ts";
 
 await start(manifest, config);
-const app = new Application();
-const router = new Router();
 
+const router = new Router();
+router.get("/", (ctx) => {
+  ctx.response.body = "Hello World";
+});
+
+const app = new Application();
 app.use(router.routes());
 app.use(router.allowedMethods());
