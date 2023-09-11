@@ -1,5 +1,6 @@
-const router = require("express").Router();
-let Exercise = require("../models/exercise.model");
+import { Router } from "https://deno.land/x/oak/mod.ts";
+import Exercise from "../../model/exercise.model.ts";
+const router = new Router();
 
 router.route("/").get((req, res) => {
   Exercise.find()

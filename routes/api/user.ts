@@ -1,5 +1,6 @@
-const router = require("express").Router();
-let User = require("../models/user.model");
+import { Router } from "https://deno.land/x/oak/mod.ts";
+import User from "../../model/user.model.ts";
+const router = new Router();
 
 router.route("/").get((req, res) => {
   User.find()
@@ -18,3 +19,5 @@ router.route("/add").post((req, res) => {
 });
 
 module.exports = router;
+
+export default router;
