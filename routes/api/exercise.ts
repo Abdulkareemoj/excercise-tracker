@@ -1,5 +1,5 @@
 import { Router } from "https://deno.land/x/oak/mod.ts";
-import Exercise from "../../model/exercise.model.ts";
+import Exercise from "../../models/exercise.model.js";
 const router = new Router();
 
 router.route("/").get((req, res) => {
@@ -25,5 +25,4 @@ router.route("/add").post((req, res) => {
     .then(() => res.json("Exercise added!"))
     .catch((err) => res.status(400).json("Error: " + err));
 });
-
-module.exports = router;
+export default router;
