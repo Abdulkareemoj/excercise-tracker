@@ -10,7 +10,7 @@ import { start } from "$fresh/server.ts";
 import manifest from "./fresh.gen.ts";
 import config from "./fresh.config.ts";
 import { Application, Router } from "https://deno.land/x/oak/mod.ts";
-
+import routes from "./routes/api/index.ts"
 await start(manifest, config);
 
 const router = new Router();
@@ -21,3 +21,12 @@ router.get("/", (ctx) => {
 const app = new Application();
 app.use(router.routes());
 app.use(router.allowedMethods());
+
+
+// app.addEventListener("listen", ({ secure, hostname, port }) => {
+//   const protocol = secure ? "https://" : "http://";
+//   const url = `${protocol}${hostname ?? "localhost"}:${port}`;
+//   console.log(`Listening on: ${port}`);
+// });
+
+// await app.listen({ port });
