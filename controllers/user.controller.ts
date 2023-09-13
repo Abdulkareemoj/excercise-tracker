@@ -1,18 +1,20 @@
 export default {
-  getAllUsers: () => {
+  getAllUsers: ({ request, response }: { request: any; response: any }) => {
     User.find()
-      .then((users) => res.json(users))
-      .catch((err) => res.status(400).json("Error: " + err));
+      .then((users) => response.json(users))
+      .catch((err) => response.status(400).json("Error: " + err));
   },
 
-  createUser: async () => {
-    const username = req.body.username;
+  createUser: async (
+    { request, response }: { request: any; response: any },
+  ) => {
+    const username = request.body.username;
 
     const newUser = new User({ username });
 
     newUser.save()
-      .then(() => res.json("User added!"))
-      .catch((err) => res.status(400).json("Error: " + err));
+      .then(() => response.json("User added!"))
+      .catch((err) => response.status(400).json("Error: " + err));
   },
   getUserById: () => {},
   updateUserById: async () => {},
