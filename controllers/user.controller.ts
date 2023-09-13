@@ -1,6 +1,19 @@
 export default {
-  getAllUsers: () => {},
-  createUser: async () => {},
+  getAllUsers: () => {
+    User.find()
+      .then((users) => res.json(users))
+      .catch((err) => res.status(400).json("Error: " + err));
+  },
+
+  createUser: async () => {
+    const username = req.body.username;
+
+    const newUser = new User({ username });
+
+    newUser.save()
+      .then(() => res.json("User added!"))
+      .catch((err) => res.status(400).json("Error: " + err));
+  },
   getUserById: () => {},
   updateUserById: async () => {},
   deleteUserById: () => {},
