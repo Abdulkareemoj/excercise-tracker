@@ -10,9 +10,11 @@ const exerciseSchema = new Schema({
   timestamps: true,
 });
 
-
 // Validations
- exerciseSchema.path("name").required(true, "Name cannot be blank.");
- exerciseSchema.path("description").required(true, "Description cannot be blank.");
+exerciseSchema.path("username").required(true, "Name cannot be blank.");
+exerciseSchema.path("description").required(
+  true,
+  "Description cannot be blank.",
+);
 
-export default model('Exercise', exerciseSchema);
+export default model("Exercise", exerciseSchema);
