@@ -2,16 +2,6 @@ import { Router } from "https://deno.land/x/oak/mod.ts";
 import Exercise from "../../models/exercise.model.ts";
 
 const router = new Router();
-
-// router.route("/").get((req, res) => {
-
-// });
-
-// router.route("/add").post((req, res) => {
-
-// });
-
-// router.route("/add").post((req, res) => );
 router
   .get(
     "/api/exercise",
@@ -42,15 +32,36 @@ router
   })
   .get(
     "/api/exercise/:id",
-    ({ request, response }: { request: any; response: any }) => {},
+    ({ request, response }: { request: any; response: any }) => {
+      Exercise.findById(request.params.id)
+        .then((exercise) => response.json(exercise))
+        .catch((err) => response.status(400).json("Error: " + err));
+    },
   )
   .put(
     "/api/exercise/:id",
-    ({ request, response }: { request: any; response: any }) => {},
+    ({ request, response }: { request: any; response: any }) => {
+      Exercise.findById(request.params.id)
+        .then((exercise) => {
+          exercise.username = request.body.username;
+          exercise.description = request.body.description;
+          exercise.duration = Number(request.body.duration);
+          exercise.date = Date.parse(request.body.date);
+
+          exercise.save()
+            .then(() => response.json("Exercise updated!"))
+            .catch((err) => response.status(400).json("Error: " + err));
+        })
+        .catch((err) => response.status(400).json("Error: " + err));
+    },
   )
   .delete(
     "/api/exercise/:id",
-    ({ request, response }: { request: any; response: any }) => {},
+    ({ request, response }: { request: any; response: any }) => {
+      Exercise.findByIdAndDelete(request.params.id)
+        .then(() => response.json("Exercise deleted."))
+        .catch((err) => response.status(400).json("Error: " + err));
+    },
   );
 
 export default router;
