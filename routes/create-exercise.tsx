@@ -26,12 +26,20 @@ export default function CreateExercise() {
   //     };
   //   }
 
-  //   componentDidMount() {
-  //     setState({
-  //       users: ["test user"],
-  //       username: "test user",
-  //     });
-  //   }
+    componentDidMount() {
+    axios.get('http://localhost:8000/users/')
+  .then(response => {
+    if (response.data.length > 0) {
+      this.setState({ 
+        users: response.data.map(user => user.username),
+        username: response.data[0].username
+      });
+    }
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+    }
 
   onChangeUsername = (e) => {
     setUsername(e.target.value);
@@ -51,6 +59,8 @@ export default function CreateExercise() {
 
   onSubmit = (e) => {
     e.preventDefault();
+    axios.post('http://localhost:8000/exercises/add', exercise)
+  .then(res => console.log(res.data));
   };
   //     const exercise = {
   //       username: username,

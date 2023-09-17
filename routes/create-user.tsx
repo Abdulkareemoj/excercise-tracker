@@ -16,6 +16,9 @@ export default function User() {
 
   onSubmit = (e) => {
     e.preventDefault();
+    axios.post('http://localhost:8000/users/add', user)
+  .then(res => console.log(res.data))
+  
   };
 
 
@@ -28,21 +31,22 @@ export default function User() {
 //     username: ''
 //   })
 // }
+
 return(
 <div>
   <h3>Create New User</h3>
   <form onSubmit={this.onSubmit}>
-    <div className="form-group"> 
+    <div className=""> 
       <label>Username: </label>
       <input  type="text"
           required
-          className="form-control"
+          className=""
           value={.username}
           onChange={onChangeUsername}
           />
     </div>
-    <div className="form-group">
-      <input type="submit" value="Create User" className="btn btn-primary" />
+    <div className="">
+      <input type="submit" value="Create User" className="" />
     </div>
   </form>
 </div>
