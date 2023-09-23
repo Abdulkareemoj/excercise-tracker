@@ -1,10 +1,10 @@
 import { LayoutProps } from "$fresh/server.ts";
-import Navbar from "../components/Navbar.tsx";
+import Header from "../components/Header.tsx";
 export default function Layout({ Component, state }: LayoutProps) {
   // do something with state here
   return (
     <div class="layout">
-      <Navbar />
+      <Header />
       <Component />
     </div>
   );
