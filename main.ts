@@ -8,8 +8,9 @@ import "$std/dotenv/load.ts";
 
 import { start } from "$fresh/server.ts";
 import manifest from "./fresh.gen.ts";
-import config from "./fresh.config.ts";
 import { Application, Router } from "https://deno.land/x/oak/mod.ts";
+import config from "./fresh.config.ts";
+
 await start(manifest, config);
 
 const router = new Router();

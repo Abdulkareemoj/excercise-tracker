@@ -19,7 +19,7 @@ export default function Home() {
             alt="the Fresh logo: a sliced lemon dripping with juice"
           />
           <h1 class="text-4xl font-bold">Welcome to Fresh</h1>
-          <p class="my-4">Here we go...</p>
+          <p class="my-4">We're back</p>
           <Counter count={count} />
         </div>
       </div>
