@@ -22,10 +22,10 @@ const app = new Application();
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-// app.addEventListener("listen", ({ secure, hostname, port }) => {
-//   const protocol = secure ? "https://" : "http://";
-//   const url = `${protocol}${hostname ?? "localhost"}:${port}`;
-//   console.log(`Listening on: ${port}`);
-// });
+app.addEventListener("listen", ({ secure, hostname, port }) => {
+  const protocol = secure ? "https://" : "http://";
+  const url = `${protocol}${hostname ?? "localhost"}:${port}`;
+  console.log(`Listening on: ${port}`);
+});
 
-// await app.listen({ port });
+await app.listen({ port });
